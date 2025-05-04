@@ -86,7 +86,7 @@ For forwarding RDP traffic to a server with IP `192.168.1.100`, use this configu
 #!/bin/sh
 
 docker run -d \
-  --name=nftables-forward \
+  --name=nftables-forward-3389 \
   --cap-add=NET_ADMIN \
   --cap-add=SYS_MODULE \
   --restart=always \
