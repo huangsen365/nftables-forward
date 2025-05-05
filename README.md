@@ -57,7 +57,7 @@ The **nftables-forward** Docker container forwards traffic (e.g., SSH on port 22
 
 ---
 
-## **Examples**
+## **More Examples**
 
 ### 1. **Forward SSH Traffic (Port 2222 → 22)**
 
