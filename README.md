@@ -7,7 +7,7 @@
   docker pull huangsen365/nftables-forward
   ```
 
-The **nftables-forward** Docker container forwards traffic (e.g., SSH on port 22 or RDP on port 3389) to a target server using **nftables** for secure, controlled forwarding.
+The **nftables-forward** Docker container forwards traffic (e.g., SSH on port 22 or RDP on port 3389 or more other custom ports) to a target server using **nftables** for secure, controlled forwarding.
 
 ---
 
@@ -16,10 +16,10 @@ The **nftables-forward** Docker container forwards traffic (e.g., SSH on port 22
 1. **Edit the script with `vim`:**
 
    ```bash
-   vim docker_run.sh
+   vim docker_run_nftables-forward.sh
    ```
 
-2. **Insert the following command into `docker_run.sh`:**
+2. **Insert the following command into `docker_run_nftables-forward.sh`:**
 
    ```bash
    #!/bin/sh
@@ -42,7 +42,7 @@ The **nftables-forward** Docker container forwards traffic (e.g., SSH on port 22
 4. **Run the script:**
 
    ```bash
-   sh docker_run.sh
+   sh docker_run_nftables-forward.sh
    ```
 
    This will forward SSH traffic from **port 2222 on the host** to **port 22 inside the container**.
@@ -52,7 +52,7 @@ The **nftables-forward** Docker container forwards traffic (e.g., SSH on port 22
 ## **How It Works**
 
 - **Customize IP**: Modify the `FORWARD_IP` environment variable to point to your backend server's IP.
-- **Run the Script**: Use `docker_run.sh` to start the forwarding.
+- **Run the Script**: Use `docker_run_nftables-forward.sh` to start the forwarding.
 - **Test**: Connect to the service (e.g., SSH) by pointing your SSH client to `localhost:2222`.
 
 ---
