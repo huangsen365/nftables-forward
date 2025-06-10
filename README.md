@@ -45,7 +45,19 @@ The **nftables-forward** Docker container forwards traffic (e.g., SSH on port 22
    sh docker_run_nftables-forward.sh
    ```
 
-   This will forward SSH traffic from **port 2222 on the host** to **port 22 inside the container**.
+This will forward SSH traffic from **port 2222 on the host** to **port 22 inside the container**.
+
+---
+
+## **Build the Docker Image**
+
+If you prefer to build the image yourself instead of pulling from Docker Hub, run:
+
+```bash
+docker build -t my-nftables-forward .
+```
+
+You can replace `my-nftables-forward` with any tag you like. Use this tag in the examples below if you built the image locally.
 
 ---
 
@@ -95,6 +107,25 @@ docker run -d \
   -e FORWARD_PORT="3389" \
   -e CONTAINER_PORT="3389" \
   huangsen365/nftables-forward
+```
+
+### 3. **Forward MySQL Traffic (Port 3306 → 3306)**
+
+After building your own image (e.g., `docker build -t my-nftables-forward .`), you can forward MySQL traffic using that tag:
+
+```bash
+#!/bin/sh
+
+docker run -d \
+  --name=nftables-forward-mysql-3306 \
+  --cap-add=NET_ADMIN \
+  --cap-add=SYS_MODULE \
+  --restart=always \
+  -p 3306:3306 \
+  -e FORWARD_IP="10.0.0.10" \
+  -e FORWARD_PORT="3306" \
+  -e CONTAINER_PORT="3306" \
+  my-nftables-forward
 ```
 
 ---
